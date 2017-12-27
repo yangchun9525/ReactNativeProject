@@ -8,5 +8,7 @@ import TouchableTest from './TouchableTest';
 import ImageTest from './ImageTest';
 import LoadNetImageTest from './LoadNetImageTest';
 import LoadNetData from './LoadNetData';
+import SectionListBasics from './SectionListBasics';
+import FlatListTest from './FlatListTest';
 
-AppRegistry.registerComponent('project', () => LoadNetData);
+AppRegistry.registerComponent('project', () => FlatListTest);

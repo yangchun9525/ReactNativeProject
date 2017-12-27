@@ -5,7 +5,8 @@ import {
     Text,
     View,
     ScrollView,
-    ListView
+    ListView,
+    FlatList
 } from 'react-native';
 
 var REQUEST_URL = 'https://api.github.com/search/repositories?q=javascript&sort=stars';
@@ -74,6 +75,10 @@ export default class LoadNetData extends Component {
     }
 
     //获取到数据加载到控件上
+    /**
+     *       <ListView dataSource={this.state.dataSource}
+                     renderRow={this.renderItemView}/>
+     */
     renderData() {
         return (
             <ScrollView style={
@@ -83,9 +88,9 @@ export default class LoadNetData extends Component {
                     paddingBottom: 5,
                     paddingRight: 5
                 }}>
-                <Text style={{fontSize: 20}}>data:</Text>
+                <Text style={{fontSize: 20}}>data111:</Text>
                 <ListView dataSource={this.state.dataSource}
-                          renderRow={this.renderItemView}/>
+                                renderRow={this.renderItemView}/>
             </ScrollView>
         );
     }
