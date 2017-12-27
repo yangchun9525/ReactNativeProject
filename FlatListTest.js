@@ -56,8 +56,11 @@ export default class FlatListTest extends Component {
   //点击按钮跳转
   onButtonPress() {
     //viewPosition参数：0表示顶部，0.5表示中部，1表示底部
-    this._flatList.scrollToIndex({viewPosition: 0, index: this.state.text});
-    //this._flatList.scrollToOffset({ animated: true, offset: 2000 });
+    console.log(typeof(parseInt(this.state.text)));
+    console.log(typeof(this.state.text));
+    var index = parseInt(this.state.text);
+    this._flatList.scrollToIndex({viewPosition: 0, index: parseInt(this.state.text)});
+    // this._flatList.scrollToOffset({ animated: true, offset: 2000 });
   };
 
   onBtnPress2Botton() {
@@ -110,7 +113,7 @@ export default class FlatListTest extends Component {
           //是一个可选的优化，用于避免动态测量内容尺寸的开销，不过前提是你可以提前知道内容的高度。
           //如果你的行高是固定的，getItemLayout用起来就既高效又简单.
           //注意如果你指定了SeparatorComponent，请把分隔线的尺寸也考虑到offset的计算之中
-          getItemLayout={(data, index) => ( {length: 44, offset: (44 + 1) * index, index} )}
+        //  getItemLayout={(data, index) => ( {length: 44, offset: (44 + 1) * index, index} )}
           //决定当距离内容最底部还有多远时触发onEndReached回调。
           //注意此参数是一个比值而非像素单位。比如，0.5表示距离内容最底部的距离为当前列表可见长度的一半时触发。
           onEndReachedThreshold={0.1}

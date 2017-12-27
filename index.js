@@ -10,5 +10,6 @@ import LoadNetImageTest from './LoadNetImageTest';
 import LoadNetData from './LoadNetData';
 import SectionListBasics from './SectionListBasics';
 import FlatListTest from './FlatListTest';
+import FlatListDemo from './FlatListDemo';
 
 AppRegistry.registerComponent('project', () => FlatListTest);
