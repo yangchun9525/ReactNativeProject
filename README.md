@@ -20,6 +20,7 @@ react-native init appname<br>
 ------- 
 cmd到项目目录下<br>
 react-native start<br>
+开启别的端口：react-native start --port 8088<br>
 保持packager开启，另外打开一个命令行窗口，然后在工程目录下运行<br>
 react-native run-android<br>
 或者直接使用as運行<br>
