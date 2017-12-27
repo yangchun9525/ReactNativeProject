@@ -1,5 +1,4 @@
 # ReactNativeProject
-个人学习Rn的project
 关于 RN的一些学习记录：
 ====  
 安裝
