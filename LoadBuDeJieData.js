@@ -6,22 +6,53 @@ import {
     Text,
     Button,
     TextInput,
+    Image,
     TouchableOpacity,
 } from 'react-native';
 
-export default class FlatListTest extends Component {
+var REQUEST_URL = "https://route.showapi.com/255-1?showapi_appid=17899&showapi_sign=9208b4bf256a46c0b9f51f653ab6e8ae&type=10";
+
+export default class LoadBuDeJieData extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: this._sourceData,
       refreshing: false, //初始化不刷新
-      text: ''//跳转的行
+      //网络请求状态
+      error: false,
+      errorInfo: ""
     };
+  }
+
+  //rn的生命周期，初始化的时候会执行
+  componentDidMount() {
+      //请求数据
+      this.fetchData();
+  }
+
+  fetchData() {
+      //这个是js的访问网络的方法
+      fetch(REQUEST_URL)
+          .then((response) => response.json())
+          .then((responseData) => {
+              console.log(responseData.showapi_res_body.pagebean.contentlist);
+              this.setState({
+                  //复制数据源
+                  data: responseData.showapi_res_body.pagebean.contentlist
+              });
+          })
+          .catch((error) => {
+              this.setState({
+                  error: true,
+                  errorInfo: error
+              })
+          })
+          .done();
   }
 
   _header = function () {
     return (
-      <Text style={{fontWeight: 'bold', fontSize: 20}}>热门电影</Text>
+      <Text style={{fontWeight: 'bold', fontSize: 20}}>不得姐数据</Text>
     );
   }
 
@@ -49,6 +80,10 @@ export default class FlatListTest extends Component {
         activeOpacity={0.5}
         onPress={this.itemClick.bind(this, item, index)}>
         <Text style={flatListStyles.item}>{item.name}</Text>
+        <Text >{item.text}</Text>
+        <Image
+          style={{width:250,height:350,borderWidth:1}}
+          source={{uri:item.cdn_img}}/>
       </TouchableOpacity>
     );
   }
@@ -56,8 +91,6 @@ export default class FlatListTest extends Component {
   //点击按钮跳转
   onButtonPress() {
     //viewPosition参数：0表示顶部，0.5表示中部，1表示底部
-    console.log(typeof(parseInt(this.state.text)));
-    console.log(typeof(this.state.text));
     var index = parseInt(this.state.text);
     this._flatList.scrollToIndex({viewPosition: 0, index: parseInt(this.state.text)});
     // this._flatList.scrollToOffset({ animated: true, offset: 2000 });
@@ -67,22 +100,6 @@ export default class FlatListTest extends Component {
     this._flatList.scrollToEnd();
   }
 
-  _sourceData = [
-    {name: '大护法'},
-    {name: '绣春刀II：修罗战场'},
-    {name: '神偷奶爸3'},
-    {name: '神奇女侠'},
-    {name: '摔跤吧，爸爸'},
-    {name: '悟空传'},
-    {name: '闪光少女'},
-    {name: '攻壳机动队'},
-    {name: '速度与激情8'},
-    {name: '蝙蝠侠大战超人'},
-    {name: '攻壳机动队'},
-    {name: '速度与激情8'},
-    {name: '蝙蝠侠大战超人'}
-  ]
-
   _newData = [{name: '我是新添加的数据1'},
     {name: '我是新添加的数据2'},
     {name: '我是新添加的数据3'}]
@@ -90,16 +107,6 @@ export default class FlatListTest extends Component {
   render() {
     return (
       <View style={flatListStyles.container}>
-        <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-          <TextInput
-            style={{flex: 1}}
-            placeholder="请输入要跳转的行号"
-            onChangeText={(text) => this.setState({text})}
-          />
-          <Button title="跳转到行" onPress={this.onButtonPress.bind(this)} color={'skyblue'}/>
-          <Button title="跳转到底部" onPress={this.onBtnPress2Botton.bind(this)} color={'green'}/>
-
-        </View>
         <FlatList
           data={this.state.data}
           //使用 ref 可以获取到相应的组件
@@ -120,9 +127,10 @@ export default class FlatListTest extends Component {
           //当列表被滚动到距离内容最底部不足onEndReachedThreshold的距离时调用
           onEndReached={({distanceFromEnd}) => (
             setTimeout(() => {
-              this.setState((state) => ({
-                data: state.data.concat(this._newData),
-              }));
+              // this.setState((state) => ({
+              //   data: state.data.concat(this._newData),
+              // }));
+              alert('没有加载的内容！');
             }, 3000)
           )}
           refreshing={this.state.refreshing}

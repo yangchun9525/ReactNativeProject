@@ -11,5 +11,6 @@ import LoadNetData from './LoadNetData';
 import SectionListBasics from './SectionListBasics';
 import FlatListTest from './FlatListTest';
 import FlatListDemo from './FlatListDemo';
+import LoadBuDeJieData from './LoadBuDeJieData';
 
-AppRegistry.registerComponent('project', () => FlatListTest);
+AppRegistry.registerComponent('project', () => LoadBuDeJieData);
