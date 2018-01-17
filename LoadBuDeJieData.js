@@ -82,7 +82,7 @@ export default class LoadBuDeJieData extends Component {
         <Text style={flatListStyles.item}>{item.name}</Text>
         <Text >{item.text}</Text>
         <Image
-          style={{width:250,height:350,borderWidth:1}}
+          style={{width:250,height:750,borderWidth:1}}
           source={{uri:item.cdn_img}}/>
       </TouchableOpacity>
     );
