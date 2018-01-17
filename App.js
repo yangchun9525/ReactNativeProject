@@ -9,7 +9,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  ScrollView
 } from 'react-native';
 import HelloCompont from'./HelloCompont'
 import Lifecycle from'./LifecycleComponent'
@@ -55,56 +56,58 @@ export default class App extends Component<{}> {
     var params = { name:"小明",age:18};
     var {name} = params;
     return (
-      <View style={styles.container}>
-        <Text>导入导出数据</Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <Text>导入导出数据</Text>
 
-        <Text style={{fontSize:20}}
-          onPress={()=>{
+          <Text style={{fontSize:20}}
+            onPress={()=>{
               this.setState({
-            result:sum(2,3)
-          })
-        }}
-        >{name},{age},2+3={this.state.result}</Text>
-        <Text>-------------------------------------------</Text>
-        <Text>生命周期</Text>
+                result:sum(2,3)
+              })
+            }}
+          >{name},{age},2+3={this.state.result}</Text>
+          <Text>-------------------------------------------</Text>
+          <Text>生命周期</Text>
 
-        <Text style={{fontSize:20}}
-          onPress={()=>{
+          <Text style={{fontSize:20}}
+            onPress={()=>{
               this.setState({
-            remove:!this.state.remove
-          })
-        }}>{text}</Text>
-        <Text>-------------------------------------------</Text>
-        <Text>props相关</Text>
+                remove:!this.state.remove
+              })
+          }}>{text}</Text>
+          <Text>-------------------------------------------</Text>
+          <Text>props相关</Text>
 
-        <PropsTest name={params.name}></PropsTest>
-        <PropsTest {...params}></PropsTest>
-        <PropsTest name={name}></PropsTest>
+          <PropsTest name={params.name}></PropsTest>
+          <PropsTest {...params}></PropsTest>
+          <PropsTest name={name}></PropsTest>
 
-        <Text>-------------------------------------------</Text>
-        <Text>State相关</Text>
+          <Text>-------------------------------------------</Text>
+          <Text>State相关</Text>
 
-        <StateTest ></StateTest>
-        <Text>-------------------------------------------</Text>
-        <Text>ref相关  获取组件
-        this.refs['reftest']或者this.refs.reftest
-        </Text>
-        <Text
-          style={{fontSize:20}}
-          onPress={()=>{
-            var size = this.reftest.getSize();
-            this.setState({
-              size:size,
+          <StateTest ></StateTest>
+          <Text>-------------------------------------------</Text>
+          <Text>ref相关  获取组件
+          this.refs['reftest']或者this.refs.reftest
+          </Text>
+          <Text
+            style={{fontSize:20}}
+            onPress={()=>{
+              var size = this.reftest.getSize();
+              this.setState({
+                size:size,
             })
           }}
           >获取气球大小:{this.state.size}</Text>
-            <RefTest ref={reftest=>this.reftest=reftest}/>
+          <RefTest ref={reftest=>this.reftest=reftest}/>
 
           <Text>-------------------------------------------</Text>
           <Text>类相关的</Text>
           <Text>{this.stu.getDesc()}</Text>
           <Text>{this.ming.getDesc()}</Text>
-      </View>
+        </View>
+      </ScrollView>
     );
   }
 }

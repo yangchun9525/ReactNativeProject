@@ -12,5 +12,7 @@ import SectionListBasics from './SectionListBasics';
 import FlatListTest from './FlatListTest';
 import FlatListDemo from './FlatListDemo';
 import LoadBuDeJieData from './LoadBuDeJieData';
+import NavigatorTest from './NavigatorTest';
+import PropsTest from './PropsTest';
 
-AppRegistry.registerComponent('project', () => LoadBuDeJieData);
+AppRegistry.registerComponent('project', () => App);

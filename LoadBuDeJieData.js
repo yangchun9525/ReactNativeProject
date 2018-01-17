@@ -6,12 +6,41 @@ import {
     Text,
     Button,
     TextInput,
-    Image,
+
     TouchableOpacity,
+    TouchableWithoutFeedback,
 } from 'react-native';
+import Image from 'react-native-image-progress';
+import ProgressBar from 'react-native-progress/Bar';
+import PropTypes from 'prop-types';
 
-var REQUEST_URL = "https://route.showapi.com/255-1?showapi_appid=17899&showapi_sign=9208b4bf256a46c0b9f51f653ab6e8ae&type=10";
+//?showapi_appid=17899&showapi_sign=9208b4bf256a46c0b9f51f653ab6e8ae&type=10
+var REQUEST_URL = "https://route.showapi.com/255-1";
+var APPID="17899";
+var SIGN="9208b4bf256a46c0b9f51f653ab6e8ae";
+var TYPE="10";
 
+var imageurl=[
+          "https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/w%3D500/sign=f80c24515ee736d158138c08ab514ffc/b2de9c82d158ccbf2c83dfb713d8bc3eb135417b.jpg",
+          "https://ss0.baidu.com/-Po3dSag_xI4khGko9WTAnF6hhy/image/w%3D500/sign=69cd4948eafe9925cb0c695004aa5ee4/c83d70cf3bc79f3dab38b5bdb0a1cd11738b2965.jpg",
+          "https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/w%3D500/sign=0f77b3df8f35e5dd902ca5df46c7a7f5/bd3eb13533fa828be6abce6ef71f4134960a5ab6.jpg",
+          "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=951013877,3865349977&fm=58",
+          "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3609205980,2357523875&fm=58&bpow=299&bpoh=400&u_exp_0=3422226876,2040756742&fm_exp_0=86",
+          "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3054622180,1502256378&fm=58",
+          "https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/w%3D500/sign=20ecb184bc003af34dbadc60052bc619/37d12f2eb9389b5059fdb1df8f35e5dde7116e38.jpg",
+          "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3198774589,3122507183&fm=58",
+          "https://ss0.baidu.com/73F1bjeh1BF3odCf/it/u=177888513,359841577&fm=85&s=79A43472534377415D4A567C0300706C",
+          "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=369627572,4280785759&fm=58",
+          "https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=77ad8b336d061d957d46303e43cf6dec/d009b3de9c82d1581213abba830a19d8bc3e422c.jpg",
+          "https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=163e64f77fd98d1076d40b371904df33/8326cffc1e178a8281e28dabf503738da877e8db.jpg",
+          "https://img01.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi02.pictn.sogoucdn.com%2F208b1aabfbd85c7e&appid=122",
+          "https://img04.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi02.pictn.sogoucdn.com%2F7e5afd8c6583d79c&appid=122",
+          "https://img04.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi02.pictn.sogoucdn.com%2F495b92e0a953a827&appid=122",
+          "https://img01.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi03.pictn.sogoucdn.com%2F189b23d998d4bb64&appid=122",
+          "https://img01.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi02.pictn.sogoucdn.com%2F728dbefcc7db109a&appid=122",
+          "https://img02.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi03.pictn.sogoucdn.com%2Fc86570085b61fa18&appid=122",
+          "https://img03.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi03.pictn.sogoucdn.com%2Fd4572671dda5c7cf&appid=122",
+          "https://img03.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi03.pictn.sogoucdn.com%2F617e86a24aaddaca&appid=122"];
 export default class LoadBuDeJieData extends Component {
   constructor(props) {
     super(props);
@@ -26,33 +55,53 @@ export default class LoadBuDeJieData extends Component {
 
   //rn的生命周期，初始化的时候会执行
   componentDidMount() {
+      let formData = new Map();
+      formData.set("showapi_appid",APPID);
+      formData.set("showapi_sign",SIGN);
+      formData.set("type",TYPE);
       //请求数据
-      this.fetchData();
+      this.fetchData(formData);
   }
 
-  fetchData() {
+  fetchData(params) {
+      if (params) {
+        let paramsArray = []
+        for(var item of params.entries()){
+          paramsArray.push(item[0]+'='+encodeURIComponent(item[1]));
+        }
+
+        if (REQUEST_URL.search(/\?/) === -1) {//拼接url
+            REQUEST_URL += '?' + paramsArray.join('&')
+        } else {
+            REQUEST_URL += '&' + paramsArray.join('&')
+        }
+      }
+      console.log(REQUEST_URL);
       //这个是js的访问网络的方法
-      fetch(REQUEST_URL)
-          .then((response) => response.json())
-          .then((responseData) => {
-              console.log(responseData.showapi_res_body.pagebean.contentlist);
-              this.setState({
-                  //复制数据源
-                  data: responseData.showapi_res_body.pagebean.contentlist
-              });
-          })
-          .catch((error) => {
-              this.setState({
-                  error: true,
-                  errorInfo: error
-              })
-          })
-          .done();
+      fetch(REQUEST_URL,{
+        method:"GET"
+      })
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log("responseData:"+responseData.showapi_res_body.pagebean.contentlist);
+        this.setState({
+          //复制数据源
+          data: responseData.showapi_res_body.pagebean.contentlist
+        });
+      })
+      .catch((error) => {
+        console.log("error:":error);
+        this.setState({
+          error: true,
+          errorInfo: error
+        })
+      })
+      .done();
   }
 
   _header = function () {
     return (
-      <Text style={{fontWeight: 'bold', fontSize: 20}}>不得姐数据</Text>
+      <Text style={{fontWeight: 'bold', fontSize: 20}}>不得姐数据1111</Text>
     );
   }
 
@@ -80,10 +129,21 @@ export default class LoadBuDeJieData extends Component {
         activeOpacity={0.5}
         onPress={this.itemClick.bind(this, item, index)}>
         <Text style={flatListStyles.item}>{item.name}</Text>
-        <Text >{item.text}</Text>
-        <Image
-          style={{width:250,height:750,borderWidth:1}}
-          source={{uri:item.cdn_img}}/>
+        <Text
+          onPress={()=>{
+            alert('点击了Text');
+          }}>{item.text}</Text>
+
+          <TouchableWithoutFeedback
+            onPress={()=>{
+              alert('点击了');
+            }}>
+            <Image
+              style={{width:350,height:550,borderWidth:1}}
+              resizeMode={'contain'}
+              indicator={ProgressBar}
+              source={{uri:item.cdn_img}}/>
+          </TouchableWithoutFeedback>
       </TouchableOpacity>
     );
   }
