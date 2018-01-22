@@ -41,6 +41,28 @@ var imageurl=[
           "https://img02.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi03.pictn.sogoucdn.com%2Fc86570085b61fa18&appid=122",
           "https://img03.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi03.pictn.sogoucdn.com%2Fd4572671dda5c7cf&appid=122",
           "https://img03.sogoucdn.com/net/a/04/link?url=http%3A%2F%2Fi03.pictn.sogoucdn.com%2F617e86a24aaddaca&appid=122"];
+
+var largeImageurl=[
+          "http://wimg.spriteapp.cn/ugc/2018/01/17/5a5e9187c7368_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2018/01/17/5a5e77ddb23f3_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2018/01/16/5a5d82f651ee3_1.jpg",
+          "http://wimg.spriteapp.cn/x/640x400/ugc/2018/01/16/5a5ded777b517_1.jpg",
+          "http://wimg.spriteapp.cn/x/640x400/ugc/2018/01/17/5a5ecc7d89a70_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2017/12/31/5a4885398f1d1_1.jpg",
+          "http://wimg.spriteapp.cn/x/640x400/ugc/2018/01/16/5a5df6fd04d10_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2018/01/16/5a5e09bb1387a_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2017/11/14/5a0aace348732_1.jpg",
+          "http://wimg.spriteapp.cn/x/640x400/ugc/2018/01/16/5a5d7eabeb546_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2018/01/02/5a4ab18dc6594_1.jpg",
+          "http://wimg.spriteapp.cn/x/640x400/ugc/2018/01/16/5a5de16e2f02e_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2018/01/16/5a5da40fadc3c_1.jpg",
+          "http://wimg.spriteapp.cn/x/640x400/ugc/2017/03/23/58d361d7ec59a_1.jpg",
+          "http://wimg.spriteapp.cn/x/640x400/ugc/2018/01/16/5a5df93eb9cb7_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2018/01/16/5a5de5c02fc71_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2018/01/16/5a5d9144f2059_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2018/01/16/5a5db90502207_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2017/06/12/593dc1e530268_1.jpg",
+          "http://wimg.spriteapp.cn/ugc/2018/01/16/5a5d71de3f8b2_1.jpg"];
 export default class LoadBuDeJieData extends Component {
   constructor(props) {
     super(props);
@@ -123,11 +145,17 @@ export default class LoadBuDeJieData extends Component {
     alert('点击了第' + index + '项，电影名称为：' + item.name);
   }
 
+  // <Image
+  //   style={{width:350,height:550,borderWidth:1}}
+  //   resizeMode={'contain'}
+  //   indicator={ProgressBar}
+  //   source={{uri:item.cdn_img}}/>
   _renderItem = ({item, index}) => {
     return (
       <TouchableOpacity
         activeOpacity={0.5}
         onPress={this.itemClick.bind(this, item, index)}>
+        <Text style={flatListStyles.item}>{index}</Text>
         <Text style={flatListStyles.item}>{item.name}</Text>
         <Text
           onPress={()=>{
@@ -142,7 +170,8 @@ export default class LoadBuDeJieData extends Component {
               style={{width:350,height:550,borderWidth:1}}
               resizeMode={'contain'}
               indicator={ProgressBar}
-              source={{uri:item.cdn_img}}/>
+              source={{uri:largeImageurl[index]}}/>
+
           </TouchableWithoutFeedback>
       </TouchableOpacity>
     );

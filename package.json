@@ -11,7 +11,9 @@
 		"react-native": "0.50.4",
 		"react-native-image-progress": "^1.0.1",
 		"react-native-progress": "^3.4.0",
-		"react-navigation": "^1.0.0-beta.26"
+		"react-native-router-flux": "^4.0.0-beta.28",
+		"react-navigation": "^1.0.0-beta.26",
+		"teaset": "^0.5.5"
 	},
 	"devDependencies": {
 		"babel-jest": "21.2.0",

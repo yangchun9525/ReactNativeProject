@@ -32,7 +32,7 @@ import ProgressBar from 'react-native-progress/Bar';
 
       使用文件系統中的图片？？
         storage/sdcard/Download/2.jpg
-
+http://wimg.spriteapp.cn/ugc/2018/01/16/5a5da40fadc3c_1.jpg
 **/
 
 
@@ -52,7 +52,7 @@ export default class LoadNetImageTest extends Component{
 
           <Image
             style={{width:width-20,height:500}}
-            source={{uri:'http://wimg.spriteapp.cn/ugc/2018/01/09/5a549188d56c3_1.jpg'}}
+            source={{uri:'http://wimg.spriteapp.cn/ugc/2018/01/16/5a5da40fadc3c_1.jpg'}}
             resizeMode={'contain'}
             indicator={ProgressBar}
             >
