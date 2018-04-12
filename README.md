@@ -35,6 +35,12 @@ ctrl+m 彈出开发者菜单<br>
 热加载 		ctrl+m 选中enable hou reload(只会刷新你修改了的)<br>
 远程调试 	ctrl+m 选中debug js Remotely(使用浏览器调试)<br>
 
+
+常见错误 
+------- 
+出现错误：name: PropTypes.string.isRequired<br>
+修改方式：将import React, { Component, PropTypes} from 'react'修改为import PropTypes from 'prop-types'，安装prop-types库  npm install prop-types --save<br>
+
 atom开发
 ------- 
 atom-beautify Ctrl+Alt+b(格式化代码)<br>
