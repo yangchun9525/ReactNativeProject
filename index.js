@@ -18,4 +18,5 @@ import RouterFluxDemo from './RouterFluxDemo'; //react-native-RouterFlux跳转
 
 import RouterFluxFirstDemo from './RouterFluxFirstDemo'; //引入文件
 
-AppRegistry.registerComponent('project', () => RouterFluxDemo);
+import RootRedux from './redux/Root'; //引入文件
+AppRegistry.registerComponent('project', () => RootRedux);
