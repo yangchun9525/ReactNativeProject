@@ -41,6 +41,11 @@ ctrl+m 彈出开发者菜单<br>
 出现错误：name: PropTypes.string.isRequired<br>
 修改方式：将import React, { Component, PropTypes} from 'react'修改为import PropTypes from 'prop-types'，安装prop-types库  npm install prop-types --save<br>
 
+Redux相关 
+------- 
+查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/20180416_180138.jpg)
+
+
 atom开发
 ------- 
 atom-beautify Ctrl+Alt+b(格式化代码)<br>
