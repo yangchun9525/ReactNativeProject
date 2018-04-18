@@ -1,5 +1,5 @@
 # ReactNativeProject
-关于 RN的一些学习记录：
+关于RN的一些学习记录：
 ====  
 安裝
 ------- 
@@ -40,6 +40,8 @@ ctrl+m 彈出开发者菜单<br>
 ------- 
 出现错误：name: PropTypes.string.isRequired<br>
 修改方式：将import React, { Component, PropTypes} from 'react'修改为import PropTypes from 'prop-types'，安装prop-types库  npm install prop-types --save<br>
+出现错误：Could not find com.github.react-native-community:cameraview:df60b07573
+修改方式：在android工程的project的build.gradle中，新增maven { url "https://jitpack.io" }
 
 Redux相关 
 ------- 

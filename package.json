@@ -9,14 +9,17 @@
 	"dependencies": {
 		"react": "16.0.0",
 		"react-native": "0.50.4",
+		"react-native-camera": "^1.1.1",
+		"react-native-communications": "^2.2.1",
+		"react-native-image-picker": "^0.26.7",
 		"react-native-image-progress": "^1.0.1",
 		"react-native-progress": "^3.4.0",
 		"react-native-router-flux": "^4.0.0-beta.28",
 		"react-navigation": "^1.0.0-beta.26",
-		"teaset": "^0.5.5",
 		"react-redux": "^5.0.7",
 		"redux": "^3.7.2",
-		"redux-thunk": "^2.2.0"
+		"redux-thunk": "^2.2.0",
+		"teaset": "^0.5.5"
 	},
 	"devDependencies": {
 		"babel-jest": "21.2.0",

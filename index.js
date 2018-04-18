@@ -19,4 +19,10 @@ import RouterFluxDemo from './RouterFluxDemo'; //react-native-RouterFlux跳转
 import RouterFluxFirstDemo from './RouterFluxFirstDemo'; //引入文件
 
 import RootRedux from './redux/Root'; //引入文件
-AppRegistry.registerComponent('project', () => RootRedux);
+
+import UserCamera from './study/userCamera'; //使用react-native-camera
+
+import imagePicker from './study/imagePicker'; //使用react-native-image-picker来打开或者拍照
+
+import useCommunications from './study/useCommunications'; //使用react-native-Communications来使用手机的打电话，发短信，发邮件，打开网页功能
+AppRegistry.registerComponent('project', () => useCommunications);
