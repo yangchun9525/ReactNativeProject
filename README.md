@@ -38,15 +38,39 @@ ctrl+m 彈出开发者菜单<br>
 
 常见错误 
 ------- 
-出现错误：name: PropTypes.string.isRequired<br>
+出现错误1：name: PropTypes.string.isRequired<br>
 修改方式：将import React, { Component, PropTypes} from 'react'修改为import PropTypes from 'prop-types'，安装prop-types库  npm install prop-types --save<br>
-出现错误：Could not find com.github.react-native-community:cameraview:df60b07573
-修改方式：在android工程的project的build.gradle中，新增maven { url "https://jitpack.io" }
+
+出现错误2：Could not find com.github.react-native-community:cameraview:df60b07573<br>
+修改方式：在android工程的project的build.gradle中，新增maven { url "https://jitpack.io" }<br>
+
+出现错误3：打包的时候出现Failed to execute aapt<br>
+修改方式：修改android/gradle.properties文件在最后面加上android.enableAapt2=false<br>
+
+出现错误4：打包的时候出现Could not find com.android.tools.build:gradle:3.0.0<br>
+修改方式：在android项目的build.gradle中的repositories，和allprojects的repositories中加入google()<br>
 
 Redux相关 
 ------- 
 查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/20180416_180138.jpg)
-
+ 
+生成 apk文件
+------- 
+1.使用android studio生成jks文件<br>
+2.android\app\build.gradle文件添加如下配置<br>
+signingConfigs { <br>
+  release { <br>
+    storeFile file('../test.jks')//签名文件路径 <br>
+        storePassword "test" <br>
+        keyAlias "test" <br>
+        keyPassword "test"  //签名密码 <br>
+    } <br>
+} <br>
+buildTypes下添加
+signingConfig signingConfigs.release<br>
+3.如果asset文件夹下存在index.android.bundle文件，则在android目录下执行gradlew assembleRelease <br>
+不存在则执行react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res，然后在android目录下执行gradlew assembleRelease <br>
+4.到android\app\build\outputs\apk\release目录下找到apk <br>
 
 atom开发
 ------- 
