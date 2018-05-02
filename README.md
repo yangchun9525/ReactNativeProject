@@ -50,10 +50,12 @@ ctrl+m 彈出开发者菜单<br>
 出现错误4：打包的时候出现Could not find com.android.tools.build:gradle:3.0.0<br>
 修改方式：在android项目的build.gradle中的repositories，和allprojects的repositories中加入google()<br>
 
+
 Redux相关 
 ------- 
 查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/20180416_180138.jpg)
- 
+
+
 生成 apk文件
 ------- 
 1.使用android studio生成jks文件<br>
