@@ -60,18 +60,29 @@ Redux相关 
 ------- 
 1.使用android studio生成jks文件<br>
 2.android\app\build.gradle文件添加如下配置<br>
-signingConfigs { <br>
-  release { <br>
-    storeFile file('../test.jks')//签名文件路径 <br>
-        storePassword "test" <br>
-        keyAlias "test" <br>
-        keyPassword "test"  //签名密码 <br>
-    } <br>
-} <br>
+
+     signingConfigs {
+        release {
+            storeFile file('../test.jks')//签名文件路径
+            storePassword "test"
+            keyAlias "test"
+            keyPassword "test"  //签名密码
+        }
+    }
 buildTypes下添加
-signingConfig signingConfigs.release<br>
-3.如果asset文件夹下存在index.android.bundle文件，则在android目录下执行gradlew assembleRelease <br>
-不存在则执行react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res，然后在android目录下执行gradlew assembleRelease <br>
+
+        signingConfig signingConfigs.release
+
+3.如果asset文件夹下存在index.android.bundle文件，则在android目录下执行
+
+        gradlew assembleRelease
+不存在则执行
+
+        react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
+ 然后在android目录下执行
+
+     gradlew assembleRelease
 4.到android\app\build\outputs\apk\release目录下找到apk <br>
 
 atom开发
