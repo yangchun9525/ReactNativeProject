@@ -13,6 +13,7 @@ export default class NavigatorFirst extends Component{
         return (
             <Text onPress={()=>{
               const { navigate } = this.props.navigation;
+              //使用routers.js中定义的NavigatorDetail进行跳转
               navigate('NavigatorDetail',{
                   headerTitle:'我是修改后的文字'
               });
