@@ -58,22 +58,29 @@ Redux相关 
 
 生成 apk文件
 ------- 
-1.使用android studio生成jks文件<br>
-2.android\app\build.gradle文件添加如下配置<br>
+1.使用android studio生成jks文件,并将jks文件放入app的src目录下<br>
+2.在项目的gradle.properties文件中添加如下配置<br>
+
+        MYAPP_RELEASE_STORE_FILE=rnproject.jks
+        MYAPP_RELEASE_KEY_ALIAS=key0
+        MYAPP_RELEASE_STORE_PASSWORD=123456
+        MYAPP_RELEASE_KEY_PASSWORD=123456
+
+3.android\app\build.gradle文件添加如下配置<br>
 
      signingConfigs {
         release {
-            storeFile file('../test.jks')//签名文件路径
-            storePassword "test"
-            keyAlias "test"
-            keyPassword "test"  //签名密码
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
         }
     }
 buildTypes下添加
 
         signingConfig signingConfigs.release
 
-3.如果asset文件夹下存在index.android.bundle文件，则在android目录下执行
+4.旧版本中如果asset文件夹下存在index.android.bundle文件，则在android目录下执行
 
         gradlew assembleRelease
 不存在则执行
@@ -83,7 +90,11 @@ buildTypes下添加
  然后在android目录下执行
 
      gradlew assembleRelease
-4.到android\app\build\outputs\apk\release目录下找到apk <br>
+
+新版本直接执行
+
+        gradlew assembleRelease
+5.到android\app\build\outputs\apk\release目录下找到apk <br>
 
 atom开发
 ------- 
