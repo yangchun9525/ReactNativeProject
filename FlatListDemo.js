@@ -16,19 +16,19 @@ export default class FlatListDemo extends Component {
     _renderItem = (item) => {
         var txt = '第' + item.index + '个' + ' title=' + item.item.title;
         var bgColor = item.index % 2 == 0 ? 'red' : 'blue';
-        return <Text style={[{flex:1,height:ITEM_HEIGHT,backgroundColor:bgColor},styles.txt]}>{txt}</Text>
+        return <Text style={[{flex: 1, height: ITEM_HEIGHT, backgroundColor: bgColor}, styles.txt]}>{txt}</Text>
     }
 
     _header = () => {
-        return <Text style={[styles.txt,{backgroundColor:'black'}]}>这是头部</Text>;
+        return <Text style={[styles.txt, {backgroundColor: 'black'}]}>这是头部</Text>;
     }
 
     _footer = () => {
-        return <Text style={[styles.txt,{backgroundColor:'black'}]}>这是尾部</Text>;
+        return <Text style={[styles.txt, {backgroundColor: 'black'}]}>这是尾部</Text>;
     }
 
     _separator = () => {
-        return <View style={{height:2,backgroundColor:'yellow'}}/>;
+        return <View style={{height: 2, backgroundColor: 'yellow'}}/>;
     }
 
     render() {
@@ -39,15 +39,15 @@ export default class FlatListDemo extends Component {
         }
 
         return (
-            <View style={{flex:1}}>
-                <Button title='滚动到指定位置' onPress={()=>{
+            <View style={{flex: 1}}>
+                <Button title='滚动到指定位置' onPress={() => {
                     //this._flatList.scrollToEnd();
-                    this._flatList.scrollToIndex({viewPosition:0,index:8});
+                    this._flatList.scrollToIndex({viewPosition: 0, index: 8});
                     // this._flatList.scrollToOffset({animated: true, offset: 2000});
                 }}/>
-                <View style={{flex:1}}>
+                <View style={{flex: 1}}>
                     <FlatList
-                        ref={(flatList)=>this._flatList = flatList}
+                        ref={(flatList) => this._flatList = flatList}
                         ListHeaderComponent={this._header}
                         ListFooterComponent={this._footer}
                         ItemSeparatorComponent={this._separator}

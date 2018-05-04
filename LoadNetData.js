@@ -21,7 +21,7 @@ export default class LoadNetData extends Component {
                 rowHasChanged: function (row1, row2) {
                     return row1 !== row2
                 },
-                sectionHeaderHasChanged:function (s1, s2) {
+                sectionHeaderHasChanged: function (s1, s2) {
                     return s1 !== s2
                 },
             }),
@@ -77,7 +77,7 @@ export default class LoadNetData extends Component {
     //获取到数据加载到控件上
     /**
      *       <ListView dataSource={this.state.dataSource}
-                     renderRow={this.renderItemView}/>
+     renderRow={this.renderItemView}/>
      */
     renderData() {
         return (
@@ -90,7 +90,7 @@ export default class LoadNetData extends Component {
                 }}>
                 <Text style={{fontSize: 20}}>data111:</Text>
                 <ListView dataSource={this.state.dataSource}
-                                renderRow={this.renderItemView}/>
+                          renderRow={this.renderItemView}/>
             </ScrollView>
         );
     }

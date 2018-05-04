@@ -4,27 +4,28 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
+    Platform,
+    StyleSheet,
+    Text,
+    View
 } from 'react-native';
 
 var name = '小明';
 var age = '22';
-export{name,age};
+export {name, age};
 //方式1：es6創建组件
-export default class HelloCompont extends Component{
-    render(){
-        return <Text style={{fontSize:20,backgroundColor:'red'}}>Hellodas.{this.props.name}</Text>;
+export default class HelloCompont extends Component {
+    render() {
+        return <Text style={{fontSize: 20, backgroundColor: 'red'}}>Hellodas.{this.props.name}</Text>;
     }
 }
 
-export function sum(a,b){
-    return a+b;
+export function sum(a, b) {
+    return a + b;
 }
+
 //方式2：es5創建组件
 //var HelloCompont = React.createClass({
 //    render(){

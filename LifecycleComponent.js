@@ -4,58 +4,65 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
+    Platform,
+    StyleSheet,
+    Text,
+    View
 } from 'react-native';
 
 //方式1：es6創建组件
-export default class LifecycleComponent extends Component{
-    constructor(props){
+export default class LifecycleComponent extends Component {
+    constructor(props) {
         super(props);
         console.log("constructor");
-        this.state={
-            count:0,
+        this.state = {
+            count: 0,
         }
     }
+
     //组件将被加载
-    componentWillMount(){
+    componentWillMount() {
         console.log("componentWillMount");
     }
+
     //组件完成加载
-    componentDidMount(){
+    componentDidMount() {
         console.log("componentDidMount");
     }
-    componentWillReceiveProps(nextProps){
+
+    componentWillReceiveProps(nextProps) {
         console.log("componentWillReceiveProps");
     }
-    shouldComponentUpdate(nextProps,nextState){
+
+    shouldComponentUpdate(nextProps, nextState) {
         console.log("shouldComponentUpdate");
         return true;
     }
-    componentWillUpdate(nextProps,nextState){
-          console.log("componentWillUpdate");
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log("componentWillUpdate");
     }
 
-    componentDidUpdate(prevProps,prevState){
+    componentDidUpdate(prevProps, prevState) {
         console.log("componentDidUpdate");
-     }
-     componentWillUnmount(){
+    }
+
+    componentWillUnmount() {
         console.log("componentWillUnmount");
-     }
-    render(){
+    }
+
+    render() {
         return <View>
-        <Text
-            style={{fontSize:20,backgroundColor:'red'}}
-            onPress={()=>{
-                this.setState({
-                    count:this.state.count+1,
-                })
-            }}
-        >Hellodas.{this.state.count}</Text>
+            <Text
+                style={{fontSize: 20, backgroundColor: 'red'}}
+                onPress={() => {
+                    this.setState({
+                        count: this.state.count + 1,
+                    })
+                }}
+            >Hellodas.{this.state.count}</Text>
 
         </View>;
     }
