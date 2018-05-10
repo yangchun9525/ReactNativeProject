@@ -5,20 +5,21 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
+    TouchableWithoutFeedback,
     FlatList,
     Image
 } from 'react-native';
 import ScreenUtil from '../util/ScreenUtil.js'
 import ProgressBar from "react-native-progress/Bar";
 //http://jbgw.troncell.com/api/v1/Sensingdevice/products?subkey=3786d29681cb41fc8ccf708e74666f44
-var url = "http://jbgw.troncell.com/api/v1/Sensingdevice/products?subkey=3786d29681cb41fc8ccf708e74666f44";
+var url = "http://jbgw.troncell.com/api/v1/Sensingdevice/products?subkey=e1e949e8c3df4465be373589ae84bf1e";
 export default class MainProduct extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             data: [],
-            refreshing: false, //初始化不刷新
+            refreshing: true, //初始化不刷新
             //网络请求状态
             error: false,
             errorInfo: ""
@@ -61,33 +62,63 @@ export default class MainProduct extends Component {
         //     console.log(data[i]);
         // }
         return (
-            <View style={styles.container}>
-                <FlatList
-                    ref={(flatList) => this._flatList = flatList}
-                    ListHeaderComponent={this._header}
-                    ListFooterComponent={this._footer}
-                    ItemSeparatorComponent={this._separator}
-                    renderItem={this._renderItem}
-                    onRefresh={this.refreshing}
-                    keyExtractor={this._keyExtractor}
-                    refreshing={false}
-                    onEndReachedThreshold={0}
-                    onEndReached={
-                        this._onload
-                    }
-                    numColumns={3}
-                    columnWrapperStyle={{borderWidth: 2, borderColor: 'black', paddingLeft: 20}}
+            <View style={{
+                flex: 1,
+                justifyContent: 'center',
+                width: "100%"
+            }}>
 
-                    //horizontal={true}
+                <TouchableWithoutFeedback
+                    onPress={() => {
+                        this.props.navigation.goBack();
+                    }}>
+                    <Image
+                        resizeMode={'contain'}
+                        style={{
+                            width: ScreenUtil.scaleSize(68),
+                            height: ScreenUtil.scaleSize(68),
+                            marginTop: ScreenUtil.scaleSize(50),
+                            marginLeft: ScreenUtil.scaleSize(60)
+                        }}
+                        source={require('../picture/back_btn_gray.png')}/>
+                </TouchableWithoutFeedback>
 
-                    getItemLayout={(data, index) => (
-                        {length: 100, offset: (100 + 2) * index, index}
-                    )}
-                    // data={data}
-                    data={this.state.data}
-                >
-                </FlatList>
-
+                <View style={{
+                    alignSelf: 'center',
+                    alignItems: 'center',
+                    flex: 1,
+                    justifyContent: 'center',
+                    width: "100%"
+                }}>
+                    <FlatList
+                        ref={(flatList) => this._flatList = flatList}
+                        // ListHeaderComponent={this._header}                    //头部布局
+                        // ListFooterComponent={this._footer}                //底部布局
+                        // ItemSeparatorComponent={this._separator}         //分割线的布局
+                        showsVerticalScrollIndicator={false}        //是否显示滚动条
+                        renderItem={this._renderItem}                  //每一个item的布局
+                        onRefresh={this.refreshing}            //如果设置了此选项，则会在列表头部添加一个标准的RefreshControl控件，以便实现“下拉刷新”的功能。同时你需要正确设置refreshing属性。
+                        keyExtractor={this._keyExtractor}            //每一行的key
+                        refreshing={true}                      //在等待加载新数据时将此属性设为true，列表就会显示出一个正在加载的符号。
+                        //决定当距离内容最底部还有多远时触发onEndReached回调。注意此参数是一个比值而非像素单位。比如，0.5表示距离内容最底部的距离为当前列表可见长度的一半时触发。
+                        onEndReachedThreshold={0}
+                        onEndReached={
+                            this._onload
+                        }
+                        numColumns={6}
+                        //每一行外层的布局
+                        // columnWrapperStyle={{borderWidth: 2, borderColor: 'black'}}
+                        //是否垂直
+                        horizontal={false}
+                        //getItemLayout是一个可选的优化，用于避免动态测量内容尺寸的开销，不过前提是你可以提前知道内容的高度。如果你的行高是固定的，getItemLayout用起来就既高效又简单，类似下面这样：
+                        getItemLayout={(data, index) => (
+                            {length: 100, offset: (100 + 2) * index, index}
+                        )}
+                        // data={data}
+                        data={this.state.data}
+                    >
+                    </FlatList>
+                </View>
             </View>
         )
     }
@@ -97,19 +128,43 @@ export default class MainProduct extends Component {
     _keyExtractor = (item, index) => index;
 
     _renderItem = (item) => {
-        console.log(item);
+        // console.log(item);
         var txt = item.item.title;
         var bgColor = item.index % 2 == 0 ? 'red' : 'blue';
         return (
-            <View>
+            <TouchableOpacity style={{
+                marginTop: ScreenUtil.scaleSize(50),
+                marginLeft: ScreenUtil.scaleSize(50),
+                marginRight: ScreenUtil.scaleSize(50)
+            }} onPress={() => {
+                const {navigate} = this.props.navigation;
+
+                navigate('ProductDetail', {
+                    detailData: item
+                });
+            }}>
                 <Image
-                    style={{width: 200, height: 100}}
+                    style={{
+                        width: ScreenUtil.scaleSize(200),
+                        height: ScreenUtil.scaleSize(250),
+                        // backgroundColor: 'gray'
+                    }}
                     source={{uri: item.item.picUrl}}
                     resizeMode={'center'}
                     indicator={ProgressBar}
                 ></Image>
-                <Text style={[{width: 200, height: 100, backgroundColor: bgColor}, styles.txt]}>{txt}</Text>
-            </View>
+                <View style={{
+                    width: ScreenUtil.scaleSize(200),
+                    height: ScreenUtil.scaleSize(100),
+                    // backgroundColor: bgColor,
+                    alignSelf: 'center',
+                    alignItems: 'center',
+                    flex: 1,
+                    justifyContent: 'center'
+                }}>
+                    <Text>{txt}</Text>
+                </View>
+            </TouchableOpacity>
         )
         // <Text style={[{width: 200, height: 100, backgroundColor: bgColor}, styles.txt]}>{txt}</Text>
     }
@@ -135,61 +190,5 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#F5FCFF'
-    },
-    rightContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffffff'
-    },
-    //包裹输入框View样式
-    textInputViewStyle: {
-        //设置宽度减去30将其居中左右便有15的距离
-        width: ScreenUtil.scaleSize(360),
-        height: ScreenUtil.scaleSize(68),
-        //设置圆角程度
-        borderRadius: ScreenUtil.scaleSize(10),
-        //设置边框的颜色
-        borderColor: '#959595',
-        //设置边框的宽度
-        borderWidth: 1,
-        //内边距
-        paddingLeft: 10,
-        paddingRight: 10,
-        //外边距
-        marginTop: 10,
-        marginLeft: 20,
-        marginRight: 20,
-        //设置相对父控件居中
-        alignSelf: 'center',
-
-
-    },
-    //输入框样式
-    textInputStyle: {
-        padding: 0,
-        width: ScreenUtil.scaleSize(300),
-        height: ScreenUtil.scaleSize(60),
-        // paddingLeft: 8,
-        backgroundColor: '#ffffff',
-        // alignSelf: 'center',
-        //根据不同平台进行适配
-        // marginTop: Platform.OS === 'ios' ? 4 : 8,
-    },
-    //登录按钮View样式
-    textLoginViewStyle: {
-        width: ScreenUtil.scaleSize(360),
-        height: ScreenUtil.scaleSize(68),
-        backgroundColor: '#B61724',
-        borderRadius: ScreenUtil.scaleSize(30),
-        marginTop: ScreenUtil.scaleSize(30),
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    //登录Text文本样式
-    textLoginStyle: {
-        fontSize: ScreenUtil.setSpText(28),
-        color: 'white',
     },
 });
