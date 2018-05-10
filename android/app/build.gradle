@@ -73,7 +73,7 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    entryFile: "index.js"
+        entryFile: "index.js"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -137,7 +137,7 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
@@ -152,7 +152,11 @@ dependencies {
     compile "com.android.support:appcompat-v7:26.1.0"
 //    compile "com.android.support:appcompat-v7:27.1.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-    compile project(path: ':react-native-camera')
+//    compile project(path: ':react-native-camera')
+
+    compile 'com.facebook.fresco:fresco:1.5.0'
+// 如果你需要支持GIF动图
+    compile 'com.facebook.fresco:animated-gif:1.5.0'
 //    compile project(':react-native-image-picker')
 }
 

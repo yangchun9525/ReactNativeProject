@@ -20,6 +20,7 @@ export default class MainProduct extends Component {
         this.state = {
             data: [],
             refreshing: true, //初始化不刷新
+            isShowLoadingImg:"flex",
             //网络请求状态
             error: false,
             errorInfo: ""
@@ -42,7 +43,8 @@ export default class MainProduct extends Component {
                 // console.log( responseData.data.data);
                 this.setState({
                     //复制数据源
-                    data: responseData.data.data
+                    data: responseData.data.data,
+                    isShowLoadingImg: "none"
                 });
             })
             .catch((error) => {
@@ -56,11 +58,6 @@ export default class MainProduct extends Component {
     }
 
     render() {
-        // var data = [];
-        // for (var i = 0; i < 10; i++) {
-        //     data.push({key: i, title: i + ''});
-        //     console.log(data[i]);
-        // }
         return (
             <View style={{
                 flex: 1,
@@ -82,6 +79,32 @@ export default class MainProduct extends Component {
                         }}
                         source={require('../picture/back_btn_gray.png')}/>
                 </TouchableWithoutFeedback>
+
+                <Image
+                    resizeMode={'contain'}
+                    style={{
+                        alignSelf: 'center',
+                        alignItems: 'center',
+                        flex: 1,
+                        justifyContent: 'center',
+                        width: ScreenUtil.scaleSize(200),
+                        height: ScreenUtil.scaleSize(100),
+                        marginTop: ScreenUtil.scaleSize(50),
+                        marginLeft: ScreenUtil.scaleSize(60),
+                        display:this.state.isShowLoadingImg
+                    }}
+                    source={require('../picture/loading.gif')}/>
+
+                {/*<Image*/}
+                    {/*resizeMode={'contain'}*/}
+                    {/*style={{*/}
+                        {/*width: ScreenUtil.scaleSize(68),*/}
+                        {/*height: ScreenUtil.scaleSize(68),*/}
+                        {/*marginTop: ScreenUtil.scaleSize(50),*/}
+                        {/*marginLeft: ScreenUtil.scaleSize(60),*/}
+                        {/*display: this.state.refreshing*/}
+                    {/*}}*/}
+                    {/*source={require('../picture/login_img.png')}/>*/}
 
                 <View style={{
                     alignSelf: 'center',
