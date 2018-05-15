@@ -38,18 +38,50 @@ ctrl+m 彈出开发者菜单<br>
 
 常见错误 
 ------- 
-出现错误1：name: PropTypes.string.isRequired<br>
-修改方式：将import React, { Component, PropTypes} from 'react'修改为import PropTypes from 'prop-types'，安装prop-types库  npm install prop-types --save<br>
+<h4>出现错误1：name: PropTypes.string.isRequired<br>
 
-出现错误2：Could not find com.github.react-native-community:cameraview:df60b07573<br>
-修改方式：在android工程的project的build.gradle中，新增maven { url "https://jitpack.io" }<br>
+修改方式：将
 
-出现错误3：打包的时候出现Failed to execute aapt<br>
-修改方式：修改android/gradle.properties文件在最后面加上android.enableAapt2=false<br>
+        import React, { Component, PropTypes} from 'react'
 
-出现错误4：打包的时候出现Could not find com.android.tools.build:gradle:3.0.0<br>
-修改方式：在android项目的build.gradle中的repositories，和allprojects的repositories中加入google()<br>
+修改为
 
+           import PropTypes from 'prop-types'，
+ 并且安装prop-types库
+
+        npm install prop-types --save
+<br>
+<h4>出现错误2：
+
+        Could not find com.github.react-native-community:cameraview:df60b07573
+修改方式：在android工程的project的build.gradle中，新增
+
+        maven {
+            url "https://jitpack.io"
+        }
+
+<h4>出现错误3：打包的时候出现
+
+        Failed to execute aapt
+修改方式：修改android/gradle.properties文件在最后面加上
+
+        android.enableAapt2=false
+
+<h4>出现错误4：打包的时候出现
+
+        Could not find com.android.tools.build:gradle:3.0.0
+修改方式：在android项目的build.gradle中的repositories，和allprojects的repositories中加入
+
+        google()
+
+<h4>出现错误5：运行时出现
+
+           React Native version mismatch
+           JavaScript version: 0.50.1
+           Native version: 0.49.3
+修改方式：安装相应的版本
+
+        npm install react-native@0.49
 
 Redux相关 
 ------- 
