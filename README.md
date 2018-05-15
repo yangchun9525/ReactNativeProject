@@ -80,7 +80,7 @@ Redux相关 
 
         google()
 # 错误5：
-修改方式：安装相应的版本
+修改方式：安装相应的版本，使js的版本和rn的版本一致
 
         npm install react-native@0.49
 生成 apk文件
