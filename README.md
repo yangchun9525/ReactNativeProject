@@ -36,10 +36,24 @@ ctrl+m 彈出开发者菜单<br>
 远程调试 	ctrl+m 选中debug js Remotely(使用浏览器调试)<br>
 
 
-常见错误 
-------- 
-<h4>出现错误1：name: PropTypes.string.isRequired<br>
 
+常见错误 
+-------
+[出现错误1：name: PropTypes.string.isRequired](#错误1)<br>
+[出现错误2：Could not find com.github.react-native-community:cameraview:df60b07573](#错误2)<br>
+[出现错误3：打包的时候出现Failed to execute aapt](#错误3)<br>
+[出现错误4：打包的时候出现Could not find com.android.tools.build:gradle:3.0.0](#错误4)<br>
+[出现错误5：运行时出现<br>
+                  React Native version mismatch<br>
+                  JavaScript version: 0.50.1<br>
+                  Native version: 0.49.3](#错误5)
+
+Redux相关 
+------- 
+查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/20180416_180138.jpg)
+
+
+# 错误1：
 修改方式：将
 
         import React, { Component, PropTypes} from 'react'
@@ -50,44 +64,25 @@ ctrl+m 彈出开发者菜单<br>
  并且安装prop-types库
 
         npm install prop-types --save
-<br>
-<h4>出现错误2：
 
-        Could not find com.github.react-native-community:cameraview:df60b07573
+# 错误2：
 修改方式：在android工程的project的build.gradle中，新增
 
         maven {
             url "https://jitpack.io"
         }
-
-<h4>出现错误3：打包的时候出现
-
-        Failed to execute aapt
+# 错误3：
 修改方式：修改android/gradle.properties文件在最后面加上
 
         android.enableAapt2=false
-
-<h4>出现错误4：打包的时候出现
-
-        Could not find com.android.tools.build:gradle:3.0.0
+# 错误4：
 修改方式：在android项目的build.gradle中的repositories，和allprojects的repositories中加入
 
         google()
-
-<h4>出现错误5：运行时出现
-
-           React Native version mismatch
-           JavaScript version: 0.50.1
-           Native version: 0.49.3
+# 错误5：
 修改方式：安装相应的版本
 
         npm install react-native@0.49
-
-Redux相关 
-------- 
-查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/20180416_180138.jpg)
-
-
 生成 apk文件
 ------- 
 1.使用android studio生成jks文件,并将jks文件放入app的src目录下<br>
