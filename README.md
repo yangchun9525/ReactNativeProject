@@ -135,3 +135,4 @@ npm install<br>
 
 搜索需要的 Package:https://atom.io/packages/emmet<br>
 点击 Repo 得到链接。<br>
+一个可github上查看代码的插件:sourcegraph <br>
