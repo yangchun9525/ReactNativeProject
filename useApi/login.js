@@ -5,14 +5,35 @@ import {
     StyleSheet,
     TextInput,
     TouchableOpacity,
-    Image
+    Image,
+    Platform,
+    ToastAndroid,
+    BackHandler
 } from 'react-native';
 import ScreenUtil from '../util/ScreenUtil.js'
+import mainProduct from "./mainProduct";
+import { NavigationActions } from 'react-navigation'
+import BaseView from "./BaseView";
 
-export default class Login extends Component {
+export default class Login extends BaseView {
+
+    constructor(props) {
+        super(props);
+    }
+
+    onBackAndroid() {
+        //到了主页了
+        if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+            console.log("login")
+            //最近2秒内按过back键，可以退出应用。
+            return false;
+        }
+        this.lastBackPressed = Date.now();
+        ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+        return true;
+    }
 
     render() {
-
         return (
             <View style={styles.container}>
                 <Image
@@ -29,7 +50,7 @@ export default class Login extends Component {
                     <View style={styles.textInputViewStyle}>
                         <TextInput
                             style={styles.textInputStyle}
-                            placeholder="输入帐号111"
+                            placeholder="输入帐号"
                             maxLength={10}
                             multiline={true}
                             underlineColorAndroid='transparent'
@@ -42,7 +63,7 @@ export default class Login extends Component {
                             style={styles.textInputStyle}
                             maxLength={10}
                             secureTextEntry={true}
-                            placeholder="输入密码1"
+                            placeholder="输入密码"
                             onChangeText={(text) => this.setState({text})}
                         />
                     </View>
@@ -50,7 +71,17 @@ export default class Login extends Component {
                     <TouchableOpacity onPress={() => {
                         const {navigate} = this.props.navigation;
 
-                        navigate('MainProduct');
+                        // navigate('MainProduct');
+                        let resetActiom = NavigationActions.reset({
+                            index: 0,//默认打开actions中的第几个页面
+                            actions: [//actions是页面集合
+                                //NavigationActions.navigate({ routeName: 'One' }),
+                                //NavigationActions.navigate({ routeName: 'Tow' }),
+                                NavigationActions.navigate({ routeName: 'MainProduct' })//这里有几个就保留几个，点击完成后就会重构导航器
+                            ]
+                        })
+                        this.props.navigation.dispatch(resetActiom)
+
                     }}>
                         <View style={styles.textLoginViewStyle}>
                             <Text style={styles.textLoginStyle}>登录</Text>

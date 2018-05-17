@@ -7,20 +7,25 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     FlatList,
-    Image
+    Image,
+    Platform,
+    ToastAndroid,
+    BackHandler
 } from 'react-native';
 import ScreenUtil from '../util/ScreenUtil.js'
 import ProgressBar from "react-native-progress/Bar";
+import BaseView from "./BaseView";
+
 //http://jbgw.troncell.com/api/v1/Sensingdevice/products?subkey=3786d29681cb41fc8ccf708e74666f44
 var url = "http://jbgw.troncell.com/api/v1/Sensingdevice/products?subkey=e1e949e8c3df4465be373589ae84bf1e";
-export default class MainProduct extends Component {
+export default class MainProduct extends BaseView {
 
     constructor(props) {
         super(props);
         this.state = {
             data: [],
             refreshing: true, //初始化不刷新
-            isShowLoadingImg:"flex",
+            isShowLoadingImg: "flex",
             //网络请求状态
             error: false,
             errorInfo: ""
@@ -57,6 +62,18 @@ export default class MainProduct extends Component {
             .done();
     }
 
+    onBackAndroid() {
+        //到了主页了
+        if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+            console.log("main")
+            //最近2秒内按过back键，可以退出应用。
+            return false;
+        }
+        this.lastBackPressed = Date.now();
+        ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+        return true;
+    };
+
     render() {
         return (
             <View style={{
@@ -65,20 +82,20 @@ export default class MainProduct extends Component {
                 width: "100%"
             }}>
 
-                <TouchableWithoutFeedback
-                    onPress={() => {
-                        this.props.navigation.goBack();
-                    }}>
-                    <Image
-                        resizeMode={'contain'}
-                        style={{
-                            width: ScreenUtil.scaleSize(68),
-                            height: ScreenUtil.scaleSize(68),
-                            marginTop: ScreenUtil.scaleSize(50),
-                            marginLeft: ScreenUtil.scaleSize(60)
-                        }}
-                        source={require('../picture/back_btn_gray.png')}/>
-                </TouchableWithoutFeedback>
+                {/*<TouchableWithoutFeedback*/}
+                {/*onPress={() => {*/}
+                {/*this.props.navigation.goBack();*/}
+                {/*}}>*/}
+                {/*<Image*/}
+                {/*resizeMode={'contain'}*/}
+                {/*style={{*/}
+                {/*width: ScreenUtil.scaleSize(68),*/}
+                {/*height: ScreenUtil.scaleSize(68),*/}
+                {/*marginTop: ScreenUtil.scaleSize(50),*/}
+                {/*marginLeft: ScreenUtil.scaleSize(60)*/}
+                {/*}}*/}
+                {/*source={require('../picture/back_btn_gray.png')}/>*/}
+                {/*</TouchableWithoutFeedback>*/}
 
                 <Image
                     resizeMode={'contain'}
@@ -91,20 +108,20 @@ export default class MainProduct extends Component {
                         height: ScreenUtil.scaleSize(100),
                         marginTop: ScreenUtil.scaleSize(50),
                         marginLeft: ScreenUtil.scaleSize(60),
-                        display:this.state.isShowLoadingImg
+                        display: this.state.isShowLoadingImg
                     }}
                     source={require('../picture/loading.gif')}/>
 
                 {/*<Image*/}
-                    {/*resizeMode={'contain'}*/}
-                    {/*style={{*/}
-                        {/*width: ScreenUtil.scaleSize(68),*/}
-                        {/*height: ScreenUtil.scaleSize(68),*/}
-                        {/*marginTop: ScreenUtil.scaleSize(50),*/}
-                        {/*marginLeft: ScreenUtil.scaleSize(60),*/}
-                        {/*display: this.state.refreshing*/}
-                    {/*}}*/}
-                    {/*source={require('../picture/login_img.png')}/>*/}
+                {/*resizeMode={'contain'}*/}
+                {/*style={{*/}
+                {/*width: ScreenUtil.scaleSize(68),*/}
+                {/*height: ScreenUtil.scaleSize(68),*/}
+                {/*marginTop: ScreenUtil.scaleSize(50),*/}
+                {/*marginLeft: ScreenUtil.scaleSize(60),*/}
+                {/*display: this.state.refreshing*/}
+                {/*}}*/}
+                {/*source={require('../picture/login_img.png')}/>*/}
 
                 <View style={{
                     alignSelf: 'center',
@@ -128,7 +145,7 @@ export default class MainProduct extends Component {
                         onEndReached={
                             this._onload
                         }
-                        numColumns={6}
+                        numColumns={4}
                         //每一行外层的布局
                         // columnWrapperStyle={{borderWidth: 2, borderColor: 'black'}}
                         //是否垂直
@@ -156,9 +173,10 @@ export default class MainProduct extends Component {
         var bgColor = item.index % 2 == 0 ? 'red' : 'blue';
         return (
             <TouchableOpacity style={{
+                // backgroundColor:'#852365',
+                width: ScreenUtil.scaleSize(480),
                 marginTop: ScreenUtil.scaleSize(50),
-                marginLeft: ScreenUtil.scaleSize(50),
-                marginRight: ScreenUtil.scaleSize(50)
+
             }} onPress={() => {
                 const {navigate} = this.props.navigation;
 
@@ -168,8 +186,10 @@ export default class MainProduct extends Component {
             }}>
                 <Image
                     style={{
-                        width: ScreenUtil.scaleSize(200),
-                        height: ScreenUtil.scaleSize(250),
+                        alignSelf: 'center',
+                        justifyContent: 'center',
+                        width: ScreenUtil.scaleSize(450),
+                        height: ScreenUtil.scaleSize(450),
                         // backgroundColor: 'gray'
                     }}
                     source={{uri: item.item.picUrl}}
@@ -177,8 +197,6 @@ export default class MainProduct extends Component {
                     indicator={ProgressBar}
                 ></Image>
                 <View style={{
-                    width: ScreenUtil.scaleSize(200),
-                    height: ScreenUtil.scaleSize(100),
                     // backgroundColor: bgColor,
                     alignSelf: 'center',
                     alignItems: 'center',

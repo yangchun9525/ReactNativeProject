@@ -14,7 +14,7 @@ export default MyApp = StackNavigator({
         screen: login,
         navigationOptions:({navigation,screenProps}) => ({
             header:null,
-        })
+        }),
     },
     // 将需要跳转的页面注册在这里，全局才可以跳转
     MainProduct: {

@@ -6,13 +6,17 @@ import {
     TextInput,
     TouchableOpacity,
     Image,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Platform,
+    ToastAndroid,
+    BackHandler
 } from 'react-native';
 import ScreenUtil from '../util/ScreenUtil.js'
 import ProgressBar from "react-native-progress/Bar";
+import BaseView from "./BaseView";
 
 var detailData, prop;
-export default class Login extends Component {
+export default class Login extends BaseView {
     // state = {
     //     user: "",
     // }
@@ -21,8 +25,11 @@ export default class Login extends Component {
         super(props);
         prop = props;
         detailData = props.navigation.state.params.detailData.item;
-        console.log("constructor");
-        console.log(detailData)
+    }
+
+    onBackAndroid() {
+        prop.navigation.goBack();
+        return true;
     }
 
     render() {
@@ -59,14 +66,14 @@ export default class Login extends Component {
 
                 <View style={styles.rightLayout}>
                     <Text style={{
-                        marginTop:ScreenUtil.scaleSize(168),
-                        marginLeft:ScreenUtil.scaleSize(168)
+                        marginTop: ScreenUtil.scaleSize(168),
+                        marginLeft: ScreenUtil.scaleSize(168)
                     }}>{detailData.title}</Text>
 
                     <Text style={{
-                        marginTop:ScreenUtil.scaleSize(68),
-                        marginLeft:ScreenUtil.scaleSize(168),
-                        marginRight:ScreenUtil.scaleSize(168)
+                        marginTop: ScreenUtil.scaleSize(68),
+                        marginLeft: ScreenUtil.scaleSize(168),
+                        marginRight: ScreenUtil.scaleSize(168)
                     }}>{detailData.skus[0].description}</Text>
 
                 </View>
@@ -78,7 +85,7 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
     rightLayout: {
         position: "absolute",
-        marginLeft:ScreenUtil.scaleSize(780),
+        marginLeft: ScreenUtil.scaleSize(780),
     }
 });
 
