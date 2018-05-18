@@ -16,7 +16,7 @@ export let screenH = Dimensions.get('window').height;
 const fontScale = PixelRatio.getFontScale();
 export let pixelRatio = PixelRatio.get();
 //像素密度
-export const DEFAULT_DENSITY = 2;
+export const DEFAULT_DENSITY = 1;
 //px转换成dp
 //以iphone6为基准,如果以其他尺寸为基准的话,请修改下面的750和1334为对应尺寸即可.
 const w2 = 1920 / DEFAULT_DENSITY;

@@ -132,6 +132,12 @@ export default class MainProduct extends BaseView {
                     width: "100%"
                 }}>
                     <FlatList
+                        style={{
+                            paddingLeft:ScreenUtil.scaleSize(70),
+                            paddingRight:ScreenUtil.scaleSize(70),
+                            width: "100%",
+                            alignSelf: 'center',
+                        }}
                         ref={(flatList) => this._flatList = flatList}
                         // ListHeaderComponent={this._header}                    //头部布局
                         // ListFooterComponent={this._footer}                //底部布局
@@ -174,7 +180,6 @@ export default class MainProduct extends BaseView {
         var bgColor = item.index % 2 == 0 ? 'red' : 'blue';
         return (
             <TouchableOpacity style={{
-                // backgroundColor:'#852365',
                 width: ScreenUtil.scaleSize(480),
                 marginTop: ScreenUtil.scaleSize(50),
 
