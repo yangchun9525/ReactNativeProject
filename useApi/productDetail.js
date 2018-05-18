@@ -27,10 +27,10 @@ export default class Login extends BaseView {
         detailData = props.navigation.state.params.detailData.item;
     }
 
-    onBackAndroid() {
-        prop.navigation.goBack();
-        return true;
-    }
+    // onBackAndroid() {
+    //     prop.navigation.goBack();
+    //     return true;
+    // }
 
     render() {
 

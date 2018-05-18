@@ -62,10 +62,11 @@ export default class MainProduct extends BaseView {
             .done();
     }
 
-    onBackAndroid() {
+    onBackAndroid = () => {
         //到了主页了
         if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
             console.log("main")
+            this.props.navigation.goBack();
             //最近2秒内按过back键，可以退出应用。
             return false;
         }

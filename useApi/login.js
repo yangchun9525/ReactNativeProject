@@ -12,24 +12,56 @@ import {
 } from 'react-native';
 import ScreenUtil from '../util/ScreenUtil.js'
 import mainProduct from "./mainProduct";
-import { NavigationActions } from 'react-navigation'
+import {NavigationActions} from 'react-navigation'
 import BaseView from "./BaseView";
 
+var prop;
 export default class Login extends BaseView {
 
     constructor(props) {
         super(props);
+        prop = props;
     }
 
-    onBackAndroid() {
-        //到了主页了
+    // onBackAndroid  () {
+    //     console.log("44444")
+    //     console.log(this.lastBackPressed && true)
+    //     console.log(this.lastBackPressed + 2000 >= Date.now())
+    //     console.log(this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now())
+    //     if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+    //         console.log("login")
+    //         prop.navigation.goBack();
+    //         //最近2秒内按过back键，可以退出应用。
+    //         return false;
+    //     }
+    //     this.lastBackPressed = Date.now();
+    //     ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+    //     //到了主页了
+    //
+    //     return true;
+    // }
+    /**
+     * this其实就是该界面的上下文，所以每次使用的时候数据会进行更新
+     * 如果使用上一种方法时，不加bind(this)，则作用域仅仅是该方法的，如果使用了bind，则是使用该方法的控件的上下文，
+     * 上面是es5写法，下面是es6写法，es6写法自动将上下文赋值
+     * @returns {boolean}
+     */
+    onBackAndroid = (key) => {
+        console.log("444442233")
+        console.log(key)
+        console.log(this.lastBackPressed && true)
+        console.log(this.lastBackPressed + 2000 >= Date.now())
+        console.log(this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now())
         if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
             console.log("login")
+            prop.navigation.goBack();
             //最近2秒内按过back键，可以退出应用。
             return false;
         }
         this.lastBackPressed = Date.now();
         ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
+        //到了主页了
+
         return true;
     }
 
@@ -77,7 +109,7 @@ export default class Login extends BaseView {
                             actions: [//actions是页面集合
                                 //NavigationActions.navigate({ routeName: 'One' }),
                                 //NavigationActions.navigate({ routeName: 'Tow' }),
-                                NavigationActions.navigate({ routeName: 'MainProduct' })//这里有几个就保留几个，点击完成后就会重构导航器
+                                NavigationActions.navigate({routeName: 'MainProduct'})//这里有几个就保留几个，点击完成后就会重构导航器
                             ]
                         })
                         this.props.navigation.dispatch(resetActiom)
