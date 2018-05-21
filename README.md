@@ -48,6 +48,11 @@ ctrl+m 彈出开发者菜单<br>
                   JavaScript version: 0.50.1<br>
                   Native version: 0.49.3](#错误5)
 
+
+生成apk
+---
+[如何生成apk](#apk)
+
 Redux相关 
 ------- 
 查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/20180416_180138.jpg)
@@ -83,8 +88,8 @@ Redux相关 
 修改方式：安装相应的版本，使js的版本和rn的版本一致
 
         npm install react-native@0.49
-生成 apk文件
-------- 
+
+# apk：
 1.使用android studio生成jks文件,并将jks文件放入app的src目录下<br>
 2.在项目的gradle.properties文件中添加如下配置<br>
 
