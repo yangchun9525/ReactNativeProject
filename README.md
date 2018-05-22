@@ -90,7 +90,7 @@ Redux相关 
         npm install react-native@0.49
 
 # apk：
-1.使用android studio生成jks文件,并将jks文件放入app的src目录下<br>
+1.使用android studio生成jks文件,并将jks文件放入app的目录下<br>
 2.在项目的gradle.properties文件中添加如下配置<br>
 
         MYAPP_RELEASE_STORE_FILE=rnproject.jks
