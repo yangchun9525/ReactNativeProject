@@ -53,6 +53,10 @@ ctrl+m 彈出开发者菜单<br>
 ---
 [如何生成apk](#apk)
 
+现有app集成Rn
+---------
+[集成Rn](#addrn)
+
 Redux相关 
 ------- 
 查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/20180416_180138.jpg)
@@ -127,6 +131,41 @@ buildTypes下添加
 
         gradlew assembleRelease
 5.到android\app\build\outputs\apk\release目录下找到apk <br>
+
+# AddRn:
+集成方式可参考该链接：https://reactnative.cn/docs/0.51/integration-with-existing-apps.html#content <br>
+但其中有几点需要注意：<br>
+1.新建的Rn activity中，应该是setJSMainModulePath("index")，新建的文件也是index.js,而不是index.android<br>
+2.如果文件是index.js，则执行的命令为
+
+        react-native bundle --platform android --dev false
+        --entry-file index.js
+        --bundle-output android/com/your-company-name/app-package-name/src/main/assets/index.android.bundle
+        --assets-dest android/com/your-company-name/app-package-name/src/main/res/
+3.打包出来的程序需要在app的build.gradle中加入关于ndk的配置，否则进入rn的activity会报错def<br>
+在最外层加入
+
+        def enableSeparateBuildPerCPUArchitecture = false
+        def enableProguardInReleaseBuilds = false
+在defaultConfig中加入
+
+        ndk {
+                    abiFilters "armeabi-v7a", "x86"
+                }
+ 在android下加入
+
+        splits {
+                abi {
+                    reset()
+                    enable enableSeparateBuildPerCPUArchitecture
+                    universalApk false  // If true, also generate a universal APK
+                    include "armeabi-v7a", "x86"
+                }
+            }
+ 在buildTypes的release中修改minifyEnabled为
+
+      minifyEnabled enableProguardInReleaseBuilds
+
 
 atom开发
 ------- 
