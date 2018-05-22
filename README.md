@@ -59,7 +59,7 @@ ctrl+m 彈出开发者菜单<br>
 
 Redux相关 
 ------- 
-查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/20180416_180138.jpg)
+查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/redux.jpg)
 
 
 # 错误1：
