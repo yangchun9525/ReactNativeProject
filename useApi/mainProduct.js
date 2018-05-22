@@ -172,7 +172,8 @@ class MainProduct extends BaseView {
                 const {navigate} = this.props.navigation;
 
                 navigate('ProductDetail', {
-                    detailData: item
+                    detailData: item,
+                    id: item.item.id
                 });
             }}>
                 <Image

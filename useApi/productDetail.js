@@ -11,12 +11,13 @@ import {
     ToastAndroid,
     BackHandler
 } from 'react-native';
+import {connect} from 'react-redux'; // 引入connect函数
 import ScreenUtil from '../util/ScreenUtil.js'
-import ProgressBar from "react-native-progress/Bar";
 import BaseView from "./BaseView";
 
-var detailData, prop;
-export default class Login extends BaseView {
+var detailData, prop, id;
+
+class ProductDetail extends BaseView {
     // state = {
     //     user: "",
     // }
@@ -24,13 +25,18 @@ export default class Login extends BaseView {
     constructor(props) {
         super(props);
         prop = props;
-        detailData = props.navigation.state.params.detailData.item;
-    }
+        // console.log(props.navigation.state.params.id)
+        // detailData = props.navigation.state.params.detailData.item;
+        id = props.navigation.state.params.id;
 
-    // onBackAndroid() {
-    //     prop.navigation.goBack();
-    //     return true;
-    // }
+        var allData = this.props.data.data;
+        for (var i = 0; i < allData.length; i++) {
+            if(allData[i].id === id){
+                detailData = allData[i]
+                break;
+            }
+        }
+    }
 
     render() {
 
@@ -89,3 +95,8 @@ const styles = StyleSheet.create({
     }
 });
 
+export default connect(
+    (state) => ({
+        data: state.mainProd.data
+    })
+)(ProductDetail)
