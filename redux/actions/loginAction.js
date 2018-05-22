@@ -16,6 +16,8 @@ export function login() {
         // 模拟用户登录
         let result = fetch('https://www.baidu.com/')
             .then((res) => {
+                console.log('result:');
+                console.log(res);
                 dispatch(loginSuccess(true, user));
             }).catch((e) => {
                 dispatch(loginError(false, user));
@@ -24,6 +26,7 @@ export function login() {
 }
 
 function isLogining() {
+    console.log('isLogining:');
     return {
         type: types.LOGIN_IN_DOING,
         user: user,

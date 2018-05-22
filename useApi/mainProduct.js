@@ -12,54 +12,36 @@ import {
     ToastAndroid,
     BackHandler
 } from 'react-native';
+import {connect} from 'react-redux'; // 引入connect函数
 import ScreenUtil from '../util/ScreenUtil.js'
 import ProgressBar from "react-native-progress/Bar";
 import BaseView from "./BaseView";
+import * as mainAction from "./actions/mainAction";
 
 //http://jbgw.troncell.com/api/v1/Sensingdevice/products?subkey=3786d29681cb41fc8ccf708e74666f44
 var url = "http://jbgw.troncell.com/api/v1/Sensingdevice/products?subkey=e1e949e8c3df4465be373589ae84bf1e";
-export default class MainProduct extends BaseView {
+
+
+class MainProduct extends BaseView {
 
     constructor(props) {
         super(props);
-        this.state = {
-            data: [],
-            refreshing: true, //初始化不刷新
-            isShowLoadingImg: "flex",
-            //网络请求状态
-            error: false,
-            errorInfo: ""
-        };
+        // this.state = {
+        //     data: [],
+        //     refreshing: true, //初始化不刷新
+        //     isShowLoadingImg: "flex",
+        //     //网络请求状态
+        //     error: false,
+        //     errorInfo: ""
+        // };
+        const {mainProduct} = this.props;
+        mainProduct();
     }
 
     //rn的生命周期，初始化的时候会执行
     componentDidMount() {
         //请求数据
-        this.fetchData();
-    }
-
-    fetchData() {
-        //这个是js的访问网络的方法
-        fetch(url, {
-            method: "GET"
-        })
-            .then((response) => response.json())
-            .then((responseData) => {
-                // console.log( responseData.data.data);
-                this.setState({
-                    //复制数据源
-                    data: responseData.data.data,
-                    isShowLoadingImg: "none"
-                });
-            })
-            .catch((error) => {
-                console.log("error:" + error);
-                this.setState({
-                    error: true,
-                    errorInfo: error
-                })
-            })
-            .done();
+        // this.fetchData();
     }
 
     onBackAndroid = () => {
@@ -76,6 +58,7 @@ export default class MainProduct extends BaseView {
     };
 
     render() {
+
         return (
             <View style={{
                 flex: 1,
@@ -109,7 +92,8 @@ export default class MainProduct extends BaseView {
                         height: ScreenUtil.scaleSize(100),
                         marginTop: ScreenUtil.scaleSize(50),
                         marginLeft: ScreenUtil.scaleSize(60),
-                        display: this.state.isShowLoadingImg
+                        // display: this.state.isShowLoadingImg
+                        display: this.props.isShowLoadingImg
                     }}
                     source={require('../picture/loading.gif')}/>
 
@@ -133,8 +117,8 @@ export default class MainProduct extends BaseView {
                 }}>
                     <FlatList
                         style={{
-                            paddingLeft:ScreenUtil.scaleSize(70),
-                            paddingRight:ScreenUtil.scaleSize(70),
+                            paddingLeft: ScreenUtil.scaleSize(70),
+                            paddingRight: ScreenUtil.scaleSize(70),
                             width: "100%",
                             alignSelf: 'center',
                         }}
@@ -162,7 +146,8 @@ export default class MainProduct extends BaseView {
                             {length: 100, offset: (100 + 2) * index, index}
                         )}
                         // data={data}
-                        data={this.state.data}
+                        // data={this.state.data}
+                        data={this.props.data.data}
                     >
                     </FlatList>
                 </View>
@@ -239,3 +224,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF'
     },
 });
+
+//通过react-redux提供的connect方法将我们需要的state中的数据和actions中的方法绑定到props上
+export default connect(
+    (state) => ({
+        type: state.mainProd.type,
+        data: state.mainProd.data,
+        isShowLoadingImg: state.mainProd.isShowLoadingImg
+    }),
+    (dispatch) => ({
+        mainProduct: () => dispatch(mainAction.getProductData())
+    })
+)(MainProduct)

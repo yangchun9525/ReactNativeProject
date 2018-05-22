@@ -26,6 +26,6 @@ import imagePicker from './study/imagePicker'; //使用react-native-image-picker
 
 import useCommunications from './study/useCommunications'; //使用react-native-Communications来使用手机的打电话，发短信，发邮件，打开网页功能
 
-import useApiMain from './useApi/useApiMain';
+import useApiMain from './useApi/useApiMain';     //使用redux来进行加载网络数据
 
 AppRegistry.registerComponent('project', () => useApiMain);
