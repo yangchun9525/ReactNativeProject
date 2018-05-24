@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 /**
- 父视图属性：
+ 父视图属性：表明这些属性在父视图中设置才有效
  row: 从左向右依次排列
  row-reverse: 从右向左依次排列
  column(default): 默认的排列方式，从上向下排列
@@ -37,7 +37,7 @@ import {
  center 元素在侧轴居中。如果元素在侧轴上的高度高于其容器，那么在两个方向上溢出距离相同。
  stretch 弹性元素被在侧轴方向被拉伸到与容器相同的高度或宽度。
  -------------------------------------------------------------------------------------------
- 子视图属性:
+ 子视图属性:表明这些属性在子视图中设置才有效
  alignSelf enum('auto', 'flex-start', 'flex-end', 'center', 'stretch')
  auto(default) 元素继承了它的父容器的 align-items 属性。如果没有父容器则为 “stretch”。
  stretch    元素被拉伸以适应容器。
@@ -87,15 +87,30 @@ export default class FlexBoxText extends Component {
         return (
             <View style={{borderColor: 'red', borderWidth: 10, backgroundColor: "darkgray", marginTop: 20}}>
                 <View style={{
+                    // flex: 1,
+                    // alignItems: 'center',
+                    // justifyContent: 'center',
+
+                    height: 200,
                     flexDirection: 'row',
                     justifyContent: 'flex-end',
                     flexWrap: 'wrap',
-                    backgroundColor: "darkgray",
+                    backgroundColor: "white",
                     marginTop: 20
                 }}>
 
-                    <View style={{width: 40, height: 40, backgroundColor: "darkcyan", margin: 5}}>
-                        <Text style={{fontSize: 16}}>1</Text>
+                    <View style={{
+                        width: 140,
+                        height: 40,
+                        backgroundColor: "blue",
+                        alignSelf: 'center',        //对于自身，让自身在父控件中居中，
+                        justifyContent: 'center',   //对于子控件，让子控件关于该View垂直居中
+                        alignItems: 'center',       //对于子控件，让子控件关于该View水平居中
+                    }}>
+                        <Text style={{
+                            fontSize: 16,
+                            backgroundColor: 'red',
+                        }}>dasda1</Text>
                     </View>
 
                     <View style={{width: 40, height: 40, backgroundColor: "darkcyan", margin: 5}}>
@@ -113,8 +128,8 @@ export default class FlexBoxText extends Component {
 
                 <View style={{flexDirection: 'row-reverse', backgroundColor: "darkgray", marginTop: 20}}>
 
-                    <View style={{flex: 1, width: 40, height: 40, backgroundColor: "darkcyan", margin: 5}}>
-                        <Text style={{fontSize: 16}}>1</Text>
+                    <View style={{width: 40, height: 40, backgroundColor: "darkcyan", margin: 5}}>
+                        <Text style={{fontSize: 16}}>145663</Text>
                     </View>
 
                     <View style={{width: 40, height: 40, backgroundColor: "darkcyan", margin: 5}}>
@@ -125,7 +140,7 @@ export default class FlexBoxText extends Component {
                         <Text style={{fontSize: 16}}>3</Text>
                     </View>
 
-                    <View style={{width: 40, height: 40, backgroundColor: "darkcyan", margin: 5}}>
+                    <View style={{flex: 1, width: 40, height: 40, backgroundColor: "darkcyan", margin: 5}}>
                         <Text style={{fontSize: 16}}>4</Text>
                     </View>
                 </View>
@@ -173,6 +188,35 @@ export default class FlexBoxText extends Component {
                         <Text style={{fontSize: 16}}>4</Text>
                     </View>
                 </View>
+
+                <View style={{
+                    position: "absolute",
+                    backgroundColor: "white"
+                }}>
+
+                    <Text style={{fontSize: 16}}>6666666666</Text>
+                </View>
+
+                <View style={{
+                    width: 200,
+                    position: "relative",
+                    backgroundColor: "white"
+                }}>
+
+                    <Text style={{fontSize: 16}}>6666666666</Text>
+                </View>
+
+                <View style={{
+                    width: 200,
+                    top: 0,
+                    left: 200,
+
+                    backgroundColor: "blue"
+                }}>
+
+                    <Text style={{fontSize: 16}}>77777777</Text>
+                </View>
+
             </View>
 
         );
