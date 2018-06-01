@@ -6,6 +6,7 @@
 1.nodejs<br>
 2.as<br>
 3.npm install -g react-native-cli<br>
+4.webstorm 破解链接：https://blog.csdn.net/voke_/article/details/76418116 <br>
 
 添加淘宝镜像
 ------- 
