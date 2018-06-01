@@ -1,16 +1,5 @@
-import React, {Component} from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    TouchableOpacity,
-    Image,
-    TouchableWithoutFeedback,
-    Platform,
-    ToastAndroid,
-    BackHandler
-} from 'react-native';
+import React from 'react';
+import {Image, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
 import {connect} from 'react-redux'; // 引入connect函数
 import ScreenUtil from '../util/ScreenUtil.js'
 import BaseView from "./BaseView";
@@ -31,7 +20,7 @@ class ProductDetail extends BaseView {
 
         var allData = this.props.data.data;
         for (var i = 0; i < allData.length; i++) {
-            if(allData[i].id === id){
+            if (allData[i].id === id) {
                 detailData = allData[i]
                 break;
             }
@@ -43,17 +32,24 @@ class ProductDetail extends BaseView {
         return (
             <View>
 
-                <Image
-                    style={{
-                        width: ScreenUtil.scaleSize(780),
-                        height: ScreenUtil.scaleSize(1200),
-                        position: "absolute"
-                    }}
-                    // source={require('../picture/login_img.png')}
-                    source={{uri: detailData.picUrl}}
-                    resizeMode={'contain'}
-                ></Image>
+                <View style={{
+                    width: ScreenUtil.scaleSize(780),
+                    height: ScreenUtil.scaleSize(1200),
+                    position: "absolute",
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
+                    <Image
+                        style={{
+                            width: ScreenUtil.scaleSize(520),
+                            height: ScreenUtil.scaleSize(650),
+                        }}
+                        // source={require('../picture/login_img.png')}
+                        source={{uri: detailData.picUrl}}
+                        resizeMode={'contain'}
+                    ></Image>
 
+                </View>
                 <TouchableWithoutFeedback
                     onPress={() => {
                         prop.navigation.goBack();

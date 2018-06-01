@@ -1,17 +1,5 @@
-import React, {Component} from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
-    FlatList,
-    Image,
-    Platform,
-    ToastAndroid,
-    BackHandler
-} from 'react-native';
+import React from 'react';
+import {FlatList, Image, StyleSheet, Text, ToastAndroid, TouchableOpacity, View} from 'react-native';
 import {connect} from 'react-redux'; // 引入connect函数
 import ScreenUtil from '../util/ScreenUtil.js'
 import ProgressBar from "react-native-progress/Bar";
@@ -66,47 +54,25 @@ class MainProduct extends BaseView {
                 width: "100%"
             }}>
 
-                {/*<TouchableWithoutFeedback*/}
-                {/*onPress={() => {*/}
-                {/*this.props.navigation.goBack();*/}
-                {/*}}>*/}
-                {/*<Image*/}
-                {/*resizeMode={'contain'}*/}
-                {/*style={{*/}
-                {/*width: ScreenUtil.scaleSize(68),*/}
-                {/*height: ScreenUtil.scaleSize(68),*/}
-                {/*marginTop: ScreenUtil.scaleSize(50),*/}
-                {/*marginLeft: ScreenUtil.scaleSize(60)*/}
-                {/*}}*/}
-                {/*source={require('../picture/back_btn_gray.png')}/>*/}
-                {/*</TouchableWithoutFeedback>*/}
-
-                <Image
-                    resizeMode={'contain'}
-                    style={{
-                        alignSelf: 'center',
-                        alignItems: 'center',
-                        flex: 1,
-                        justifyContent: 'center',
-                        width: ScreenUtil.scaleSize(200),
-                        height: ScreenUtil.scaleSize(100),
-                        marginTop: ScreenUtil.scaleSize(50),
-                        marginLeft: ScreenUtil.scaleSize(60),
-                        // display: this.state.isShowLoadingImg
-                        display: this.props.isShowLoadingImg
-                    }}
-                    source={require('../picture/loading.gif')}/>
-
-                {/*<Image*/}
-                {/*resizeMode={'contain'}*/}
-                {/*style={{*/}
-                {/*width: ScreenUtil.scaleSize(68),*/}
-                {/*height: ScreenUtil.scaleSize(68),*/}
-                {/*marginTop: ScreenUtil.scaleSize(50),*/}
-                {/*marginLeft: ScreenUtil.scaleSize(60),*/}
-                {/*display: this.state.refreshing*/}
-                {/*}}*/}
-                {/*source={require('../picture/login_img.png')}/>*/}
+                <View style={{
+                    alignSelf: 'center',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: "100%",
+                    height: "100%",
+                    display: this.props.isShowLoadingImg
+                }}>
+                    <Image
+                        resizeMode={'contain'}
+                        style={{
+                            // alignSelf: 'flex-start',
+                            width: ScreenUtil.scaleSize(300),
+                            height: ScreenUtil.scaleSize(150),
+                            marginTop: ScreenUtil.scaleSize(50),
+                            marginLeft: ScreenUtil.scaleSize(60),
+                        }}
+                        source={require('../picture/loading.gif')}/>
+                </View>
 
                 <View style={{
                     alignSelf: 'center',

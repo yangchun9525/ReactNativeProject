@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 /**
- 父视图属性：表明这些属性在父视图中设置才有效
+ 父视图属性：表明这些属性在父视图中设置才有效,设置一些父视图的属性，类似于在Android的LinearLayout中设置属性
  row: 从左向右依次排列
  row-reverse: 从右向左依次排列
  column(default): 默认的排列方式，从上向下排列
@@ -37,7 +37,7 @@ import {
  center 元素在侧轴居中。如果元素在侧轴上的高度高于其容器，那么在两个方向上溢出距离相同。
  stretch 弹性元素被在侧轴方向被拉伸到与容器相同的高度或宽度。
  -------------------------------------------------------------------------------------------
- 子视图属性:表明这些属性在子视图中设置才有效
+ 子视图属性:表明这些属性在子视图中设置才有效，设置一些子视图的属性，类似于在Android的LinearLayout下的view设置属性
  alignSelf enum('auto', 'flex-start', 'flex-end', 'center', 'stretch')
  auto(default) 元素继承了它的父容器的 align-items 属性。如果没有父容器则为 “stretch”。
  stretch    元素被拉伸以适应容器。
