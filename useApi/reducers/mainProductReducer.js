@@ -31,6 +31,17 @@ export default function main(state = initialState, action) {
                 ...state,
                 status: '获取失败',
                 isSuccess: false,
+                data: action.data,
+                isShowLoadingImg:"none"
+            }
+            break;
+        case "getting":
+            console.log("获取中");
+            console.log("---------------")
+            return {
+                ...state,
+                status: '获取中',
+                isSuccess: false,
                 user: action.data,
                 isShowLoadingImg:"flex"
             }

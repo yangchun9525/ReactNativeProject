@@ -114,6 +114,8 @@ class MainProduct extends BaseView {
                         // data={data}
                         // data={this.state.data}
                         data={this.props.data.data}
+                        //空数据视图,可以是React Component,也可以是一个render函数，或者渲染好的element。
+                        ListEmptyComponent={this.createEmptyView()}
                     >
                     </FlatList>
                 </View>
@@ -180,6 +182,11 @@ class MainProduct extends BaseView {
         return <View style={{height: 2, backgroundColor: 'yellow'}}/>;
     }
 
+    createEmptyView() {
+        return (
+            <Text style={{fontSize: 40, alignSelf: 'center'}}>还没有数据哦！</Text>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
