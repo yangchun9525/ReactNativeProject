@@ -47,8 +47,9 @@ ctrl+m 彈出开发者菜单<br>
 [出现错误5：运行时出现<br>
                   React Native version mismatch<br>
                   JavaScript version: 0.50.1<br>
-                  Native version: 0.49.3](#错误5)
-
+                  Native version: 0.49.3](#错误5)<br>
+[出现错误6：打包的时候出现<br>
+Error:Execution failed for task ':app:transformClassesWithDexForDebug'](#错误6)<br>
 
 生成apk
 ---
@@ -93,7 +94,13 @@ Redux相关 
 修改方式：安装相应的版本，使js的版本和rn的版本一致
 
         npm install react-native@0.49
+# 错误6：
+修改方式：在app的build.gradle中加入如下代码
 
+       defaultConfig {
+           ...
+           multiDexEnabled true
+       }
 # apk：
 1.使用android studio生成jks文件,并将jks文件放入app的目录下<br>
 2.在项目的gradle.properties文件中添加如下配置<br>

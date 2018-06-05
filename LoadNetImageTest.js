@@ -18,11 +18,11 @@ import ProgressBar from 'react-native-progress/Bar';
 
 /**
  图片填充属性：
- cover默认
- contain
- stretch
+ cover默认  展示一部分，这展示的一部分是正常显示的
+ contain    将图片进行压缩，然后展示图片的全部
+ stretch    将图片不进行压缩，然后展示图片的全部
  repeat只在ios上有效
- center
+ center     展示居中
 
  加载网络图片必须指定宽高
  http://wimg.spriteapp.cn/ugc/2018/01/09/5a549188d56c3_1.jpg
@@ -53,9 +53,9 @@ export default class LoadNetImageTest extends Component {
                 <Text>22112111333</Text>
 
                 <Image
-                    style={{width: width - 20, height: 500}}
-                    source={{uri: 'http://wimg.spriteapp.cn/ugc/2018/01/16/5a5da40fadc3c_1.jpg'}}
-                    resizeMode={'contain'}
+                    style={{width: width - 20, height: height*2,backgroundColor:"#ffffff"}}
+                    source={{uri: 'http://jbgw.troncell.com/uploads/Customer/39/Ads/resource2018032016005785602805.jpg'}}
+                    resizeMode={'center'}
                     indicator={ProgressBar}
                 >
                 </Image>
