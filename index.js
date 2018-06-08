@@ -29,4 +29,6 @@ import useCommunications from './study/useCommunications'; //使用react-native-
 import useApiMain from './useApi/useApiMain';     //使用redux来保存加载的网络数据
 
 import useAsyncStorage from './UseAsyncStorage';     //将数据保存到本地
-AppRegistry.registerComponent('project', () => useApiMain);
+
+import networktest from './NetWorkTest';     //测试post请求的2种方式，一种是string格式的参数，一种是json格式的参数
+AppRegistry.registerComponent('project', () => networktest);
