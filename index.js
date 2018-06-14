@@ -14,9 +14,9 @@ import FlatListDemo from './FlatListDemo';//flatlist的demo
 import LoadBuDeJieData from './LoadBuDeJieData';//加载百思不得姐数据，但显示长图时有的图片不能显示
 import NavigatorTest from './NavigatorTest';//react-native-navigator跳转
 import PropsTest from './PropsTest';//属性的demo
-import RouterFluxDemo from './RouterFluxDemo'; //react-native-RouterFlux跳转
+// import RouterFluxDemo from './RouterFluxDemo'; //react-native-RouterFlux跳转
 
-import RouterFluxFirstDemo from './RouterFluxFirstDemo'; //引入文件
+// import RouterFluxFirstDemo from './RouterFluxFirstDemo'; //引入文件
 
 import RootRedux from './redux/Root'; //引入文件
 
@@ -31,4 +31,6 @@ import useApiMain from './useApi/useApiMain';     //使用redux来保存加载�
 import useAsyncStorage from './UseAsyncStorage';     //将数据保存到本地
 
 import networktest from './NetWorkTest';     //测试post请求的2种方式，一种是string格式的参数，一种是json格式的参数
-AppRegistry.registerComponent('project', () => networktest);
+
+import mobxDemo from './mobxDemo/MobxDemo';     //测试post请求的2种方式，一种是string格式的参数，一种是json格式的参数
+AppRegistry.registerComponent('project', () => useApiMain);

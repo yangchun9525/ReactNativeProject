@@ -63,6 +63,16 @@ Redux相关 
 ------- 
 查看![Redux总结](https://github.com/yangchun9525/ReactNativeProject/blob/master/picture/redux.jpg)
 
+MobX相关 
+-------
+1.添加依赖：
+
+        "babel-plugin-transform-decorators-legacy": "^1.3.5",
+        "mobx": "^4.3.1",
+        "mobx-react": "^5.2.3",
+ 2.在.babelrc文件中添加
+
+         "plugins": ["transform-decorators-legacy"]
 
 # 错误1：
 修改方式：将
